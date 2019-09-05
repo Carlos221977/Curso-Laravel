@@ -27,3 +27,6 @@ Route::get('admin/sistema/permiso', 'PermisoController@indexRedireccion')->name(
 Route::get('permisoDos/{nombre}', function ($nombre) {
     return $nombre;
 })->where('nombre', '[A-Za-z]+')->name('permisoDos');
+
+//En Inicio/Raíz llamamos al controlador InicioController y dentro de el a la función Index
+Route::get('/', 'InicioController@index');
