@@ -20,13 +20,18 @@
 //Route::get('permiso/{nombre}', 'PermisoController@index');
 
 //Creamos un link directo a una url compleja
-Route::get('permiso/', 'PermisoController@indexRedireccion');
-Route::get('admin/sistema/permiso', 'PermisoController@indexRedireccion')->name('permiso');
+//Route::get('permiso/', 'PermisoController@indexRedireccion');
+//Route::get('admin/sistema/permiso', 'PermisoController@indexRedireccion')->name('permiso');
 
 //En esta ruta solo aceptara letras de la A a la Z si queremos que sea números habría que poner [0-9+]
-Route::get('permisoDos/{nombre}', function ($nombre) {
-    return $nombre;
-})->where('nombre', '[A-Za-z]+')->name('permisoDos');
+//Route::get('permisoDos/{nombre}', function ($nombre) {
+//    return $nombre;
+//})->where('nombre', '[A-Za-z]+')->name('permisoDos');
 
 //En Inicio/Raíz llamamos al controlador InicioController y dentro de el a la función Index
 Route::get('/', 'InicioController@index');
+Route::get('admin/permiso', 'Admin\PermisoController@index')->name('permiso');
+Route::get('admin/permiso/crear', 'Admin\PermisoController@crear')->name('crear_permiso');
+Route::get('admin/menu', 'Admin\MenuController@index')->name('menu');
+Route::get('admin/menu/crear', 'Admin\MenuController@crear')->name('crear_menu');
+Route::post('admin/menu/', 'Admin\MenuController@guardar')->name('guardar_menu');

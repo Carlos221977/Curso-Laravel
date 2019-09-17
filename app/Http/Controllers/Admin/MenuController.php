@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\admin\Permiso;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ValidacionMenu;
+use App\Models\Admin\Menu;
 
-class PermisoController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,9 +24,9 @@ class PermisoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function crear()
     {
-        //
+        return view('admin.menu.crear');
     }
 
     /**
@@ -33,18 +35,24 @@ class PermisoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function guardar(ValidacionMenu $request)
     {
-        //
+        // con esta funcion mostramos lo que llega por el POST del formulario
+        //dd($request->all());
+
+        // Guardamos en la base de datos
+        Menu::create($request->all());
+        //redirigimos a esa url al hacer un submit correcto y enviamos una variable de session momentánea la variable mensaje
+        return redirect('admin/menu/crear')->with('mensaje', 'Menú creado con exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\admin\Permiso  $permiso
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Permiso $permiso)
+    public function mostrar($id)
     {
         //
     }
@@ -52,10 +60,10 @@ class PermisoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\admin\Permiso  $permiso
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permiso $permiso)
+    public function editar($id)
     {
         //
     }
@@ -64,21 +72,21 @@ class PermisoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\admin\Permiso  $permiso
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permiso $permiso)
+    public function actualizar(Request $request, $id)
     {
-        //
+        return redirect('admin/menu/crear')->with('mensaje', 'Menú actualizado con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\admin\Permiso  $permiso
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permiso $permiso)
+    public function eliminar($id)
     {
         //
     }
